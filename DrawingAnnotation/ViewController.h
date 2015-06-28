@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+#pragma mark - Drawing
+@property (weak, nonatomic) IBOutlet UIImageView *imageForAnnotationImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *baseImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *drawingImageView;
 @property (weak, nonatomic) IBOutlet UIButton *brushWitdhButton;
@@ -25,6 +27,20 @@
 - (IBAction)eraserButtonAction:(id)sender;
 - (IBAction)saveButtonAction:(id)sender;
 - (IBAction)resetButtonAction:(id)sender;
+
+#pragma mark - Annotating
+
+@property (weak, nonatomic) IBOutlet UIView *annotationContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *addTextAnnotationButton;
+@property (weak, nonatomic) IBOutlet UIView *addAnnotationView;
+@property (weak, nonatomic) IBOutlet UILabel *addAnnotationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addAnnotationInstructionLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addAnnotationTextField;
+@property (weak, nonatomic) IBOutlet UIButton *addAnnotationButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *addAnnotationViewYPositionConstraint;
+
+- (IBAction)addTextAnnotationAction:(id)sender;
+- (IBAction)addAnnotationAction:(id)sender;
 
 @end
 
