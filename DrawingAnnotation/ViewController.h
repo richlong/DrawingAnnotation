@@ -10,6 +10,21 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *baseImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *drawingImageView;
+@property (weak, nonatomic) IBOutlet UIButton *brushWitdhButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectColourButton;
+@property (weak, nonatomic) IBOutlet UIButton *eraserButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet UIButton *brushOpacityButton;
+
+- (IBAction)brushOpacityAction:(id)sender;
+- (IBAction)brushWidthAction:(id)sender;
+- (IBAction)selectColourAction:(id)sender;
+- (IBAction)eraserButtonAction:(id)sender;
+- (IBAction)saveButtonAction:(id)sender;
+- (IBAction)resetButtonAction:(id)sender;
 
 @end
 

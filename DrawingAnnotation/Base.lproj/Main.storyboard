@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,156 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-nw-Uvu">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-CY-fOD">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-zm-WO1">
+                                <rect key="frame" x="20" y="20" width="135" height="30"/>
+                                <state key="normal" title="Brush Width Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="75" width="135" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="brushWidthAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g1B-lY-H9Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzi-wl-4Cs">
+                                <rect key="frame" x="20" y="49" width="96" height="30"/>
+                                <state key="normal" title="Colour Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="102" width="96" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="selectColourAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e1-8J-pte"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrs-mD-Oap">
+                                <rect key="frame" x="20" y="78" width="94" height="30"/>
+                                <state key="normal" title="Eraser Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="127" width="94" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="eraserButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kd7-Kv-jbg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuC-4T-Qu1">
+                                <rect key="frame" x="20" y="105" width="90" height="30"/>
+                                <state key="normal" title="Reset Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="154" width="90" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="resetButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gFf-EF-8l8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT5-v7-Wkq">
+                                <rect key="frame" x="20" y="135" width="85" height="30"/>
+                                <state key="normal" title="Save Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="180" width="85" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L6I-6k-wNS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jv9-9T-Pxv">
+                                <rect key="frame" x="20" y="20" width="135" height="30"/>
+                                <state key="normal" title="Brush Opacity Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="42" y="49" width="148" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="brushOpacityAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="69s-Pu-wdf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9V6-nw-Uvu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Imn-2a-SAg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9V6-nw-Uvu" secondAttribute="bottom" id="LYe-Ic-A2K"/>
+                            <constraint firstAttribute="trailing" secondItem="0hh-CY-fOD" secondAttribute="trailing" id="Sfg-5S-zqc"/>
+                            <constraint firstItem="0hh-CY-fOD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tYC-m9-Xjj"/>
+                            <constraint firstItem="9V6-nw-Uvu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="u3i-R1-mf6"/>
+                            <constraint firstAttribute="trailing" secondItem="9V6-nw-Uvu" secondAttribute="trailing" id="wyz-Hv-0WU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0hh-CY-fOD" secondAttribute="bottom" id="xds-2u-Og4"/>
+                            <constraint firstItem="0hh-CY-fOD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="z1S-Cj-7Cx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="9V6-nw-Uvu"/>
+                                <exclude reference="0hh-CY-fOD"/>
+                                <exclude reference="Hcx-zm-WO1"/>
+                                <exclude reference="Tzi-wl-4Cs"/>
+                                <exclude reference="jrs-mD-Oap"/>
+                                <exclude reference="XuC-4T-Qu1"/>
+                                <exclude reference="rT5-v7-Wkq"/>
+                                <exclude reference="Jv9-9T-Pxv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="LYe-Ic-A2K"/>
+                                <exclude reference="xds-2u-Og4"/>
+                                <exclude reference="Sfg-5S-zqc"/>
+                                <exclude reference="tYC-m9-Xjj"/>
+                                <exclude reference="z1S-Cj-7Cx"/>
+                                <exclude reference="Imn-2a-SAg"/>
+                                <exclude reference="u3i-R1-mf6"/>
+                                <exclude reference="wyz-Hv-0WU"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="9V6-nw-Uvu"/>
+                                <include reference="0hh-CY-fOD"/>
+                                <include reference="Hcx-zm-WO1"/>
+                                <include reference="Tzi-wl-4Cs"/>
+                                <include reference="jrs-mD-Oap"/>
+                                <include reference="XuC-4T-Qu1"/>
+                                <include reference="rT5-v7-Wkq"/>
+                                <include reference="Jv9-9T-Pxv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="LYe-Ic-A2K"/>
+                                <include reference="xds-2u-Og4"/>
+                                <include reference="Sfg-5S-zqc"/>
+                                <include reference="tYC-m9-Xjj"/>
+                                <include reference="z1S-Cj-7Cx"/>
+                                <include reference="Imn-2a-SAg"/>
+                                <include reference="u3i-R1-mf6"/>
+                                <include reference="wyz-Hv-0WU"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="baseImageView" destination="9V6-nw-Uvu" id="fdw-qc-N5i"/>
+                        <outlet property="brushOpacityButton" destination="Jv9-9T-Pxv" id="OK2-nM-87q"/>
+                        <outlet property="brushWitdhButton" destination="Hcx-zm-WO1" id="m2L-R2-CpZ"/>
+                        <outlet property="drawingImageView" destination="0hh-CY-fOD" id="Wps-Gj-rcQ"/>
+                        <outlet property="eraserButton" destination="jrs-mD-Oap" id="8ee-AD-GM2"/>
+                        <outlet property="resetButton" destination="XuC-4T-Qu1" id="UoN-AD-gr2"/>
+                        <outlet property="saveButton" destination="rT5-v7-Wkq" id="HKu-Dh-ce7"/>
+                        <outlet property="selectColourButton" destination="Tzi-wl-4Cs" id="QG6-RI-6qA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="417.75" y="358"/>
         </scene>
     </scenes>
 </document>
