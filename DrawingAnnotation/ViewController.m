@@ -12,6 +12,7 @@
 @interface ViewController () {
     
     CGPoint lastPoint;
+    CGPoint annotationPoint;
     CGFloat red;
     CGFloat green;
     CGFloat blue;
@@ -23,6 +24,7 @@
     BOOL isAnnotation;
     BOOL isAnnotationViewActive;
     BOOL isAnnotationPointSet;
+    int activeColor;
 
 }
 
@@ -65,6 +67,9 @@
         self.addAnnotationLabel.hidden = NO;
         self.addAnnotationButton.hidden = NO;
         self.addAnnotationInstructionLabel.hidden = YES;
+        annotationPoint = lastPoint;
+        NSLog(@"annotationPoint: (%f,%f)", annotationPoint.x, annotationPoint.y);
+
     }
     
     [self.addAnnotationTextField endEditing:YES];
@@ -151,8 +156,16 @@
     isErasing = NO;
     isDrawing = YES;
 
-    UIButton *pressedButton = (UIButton*)sender;
-    switch(pressedButton.tag) {
+    activeColor++;
+    
+    if (activeColor > 9) {
+        activeColor = 0;
+    }
+    
+//    UIButton *pressedButton = (UIButton*)sender;
+//    switch(pressedButton.tag) {
+
+    switch(activeColor) {
         case 0:
             red = 0.0/255.0;
             green = 0.0/255.0;
