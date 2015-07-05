@@ -71,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */,
+				44A489B81B4029720029AD76 /* Yosemite 2.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -105,7 +106,6 @@
 				44A4899C1B400C770029AD76 /* Main.storyboard */,
 				44A4899F1B400C770029AD76 /* Images.xcassets */,
 				44A489A11B400C770029AD76 /* LaunchScreen.xib */,
-				44A489B81B4029720029AD76 /* Yosemite 2.jpg */,
 				44A489921B400C770029AD76 /* Supporting Files */,
 			);
 			path = DrawingAnnotation;

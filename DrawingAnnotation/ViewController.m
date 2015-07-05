@@ -23,7 +23,7 @@
     BOOL isDrawing;
     BOOL isAnnotation;
     BOOL isAnnotationViewActive;
-    BOOL isAnnotationPointSet;
+    BOOL isSettingAnnotationPoint;
     int activeColor;
 }
 
@@ -66,8 +66,12 @@
         self.addAnnotationLabel.hidden = NO;
         self.addAnnotationButton.hidden = NO;
         self.addAnnotationInstructionLabel.hidden = YES;
-        annotationPoint = lastPoint;
-        NSLog(@"annotationPoint: (%f,%f)", annotationPoint.x, annotationPoint.y);
+        
+        if (isSettingAnnotationPoint) {
+            annotationPoint = lastPoint;
+            isSettingAnnotationPoint = NO;
+            NSLog(@"annotationPoint: (%f,%f)", annotationPoint.x, annotationPoint.y);
+        }
 
     }
     
@@ -293,12 +297,9 @@
     }
 }
 
-
-
 - (IBAction)addAnnotationAction:(id)sender {
     
-    UILabel *newAnnotation = [Annotation createLabelWithAnnotation:self.addAnnotationTextField.text Point:lastPoint];
-    [self.annotationContainerView addSubview:newAnnotation];
+    [self.annotationContainerView addSubview:[Annotation createLabelWithAnnotation:self.addAnnotationTextField.text Point:lastPoint]];
     
     self.addAnnotationTextField.text = @"";
     [self.addAnnotationTextField endEditing:YES];
@@ -377,5 +378,6 @@
 - (IBAction)optionsMenuAddAnnotationAction:(id)sender {
     [self showAddAnnotation];
     [self optionsMenuToggle];
+    isSettingAnnotationPoint = YES;
 }
 @end

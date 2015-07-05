@@ -21,7 +21,7 @@
     CGSize maximumLabelSize = CGSizeMake(200, 9999);
     CGSize expectSize = [annotationLabel sizeThatFits:maximumLabelSize];
     annotationLabel.frame = CGRectMake(lastPoint.x, lastPoint.y, expectSize.width, expectSize.height);
-    annotationLabel.backgroundColor = [UIColor redColor];
+    annotationLabel.backgroundColor = [UIColor colorWithRed:17.0 green:169.0 blue:224.0 alpha:1.0];
 
     return annotationLabel;
 }
