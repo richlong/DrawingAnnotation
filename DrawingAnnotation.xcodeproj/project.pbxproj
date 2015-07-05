@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		447CED9A1B496CAB00E1A5B0 /* kizu_logo_270px.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */; };
 		44A489951B400C770029AD76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489941B400C770029AD76 /* main.m */; };
 		44A489981B400C770029AD76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489971B400C770029AD76 /* AppDelegate.m */; };
 		44A4899B1B400C770029AD76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4899A1B400C770029AD76 /* ViewController.m */; };
@@ -15,7 +16,6 @@
 		44A489A31B400C770029AD76 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A489A11B400C770029AD76 /* LaunchScreen.xib */; };
 		44A489AF1B400C770029AD76 /* DrawingAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489AE1B400C770029AD76 /* DrawingAnnotationTests.m */; };
 		44A489B91B4029720029AD76 /* Yosemite 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44A489B81B4029720029AD76 /* Yosemite 2.jpg */; };
-		44A489C01B4038FA0029AD76 /* AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489BF1B4038FA0029AD76 /* AnnotationViewController.m */; };
 		44A489C31B406DDE0029AD76 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489C21B406DDE0029AD76 /* Annotation.m */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kizu_logo_270px.png; sourceTree = "<group>"; };
 		44A4898F1B400C770029AD76 /* DrawingAnnotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingAnnotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A489931B400C770029AD76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44A489941B400C770029AD76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,8 +45,6 @@
 		44A489AD1B400C770029AD76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44A489AE1B400C770029AD76 /* DrawingAnnotationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawingAnnotationTests.m; sourceTree = "<group>"; };
 		44A489B81B4029720029AD76 /* Yosemite 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Yosemite 2.jpg"; sourceTree = "<group>"; };
-		44A489BE1B4038FA0029AD76 /* AnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationViewController.h; sourceTree = "<group>"; };
-		44A489BF1B4038FA0029AD76 /* AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationViewController.m; sourceTree = "<group>"; };
 		44A489C11B406DDE0029AD76 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Annotation.h; path = Classes/Annotation.h; sourceTree = "<group>"; };
 		44A489C21B406DDE0029AD76 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Annotation.m; path = Classes/Annotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		447CED981B496C9700E1A5B0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		44A489861B400C770029AD76 = {
 			isa = PBXGroup;
 			children = (
@@ -89,14 +96,13 @@
 		44A489911B400C770029AD76 /* DrawingAnnotation */ = {
 			isa = PBXGroup;
 			children = (
+				447CED981B496C9700E1A5B0 /* Images */,
 				44A489BA1B402B0C0029AD76 /* Classes */,
 				44A489961B400C770029AD76 /* AppDelegate.h */,
 				44A489971B400C770029AD76 /* AppDelegate.m */,
 				44A489991B400C770029AD76 /* ViewController.h */,
 				44A4899A1B400C770029AD76 /* ViewController.m */,
 				44A4899C1B400C770029AD76 /* Main.storyboard */,
-				44A489BE1B4038FA0029AD76 /* AnnotationViewController.h */,
-				44A489BF1B4038FA0029AD76 /* AnnotationViewController.m */,
 				44A4899F1B400C770029AD76 /* Images.xcassets */,
 				44A489A11B400C770029AD76 /* LaunchScreen.xib */,
 				44A489B81B4029720029AD76 /* Yosemite 2.jpg */,
@@ -222,6 +228,7 @@
 			files = (
 				44A4899E1B400C770029AD76 /* Main.storyboard in Resources */,
 				44A489A31B400C770029AD76 /* LaunchScreen.xib in Resources */,
+				447CED9A1B496CAB00E1A5B0 /* kizu_logo_270px.png in Resources */,
 				44A489B91B4029720029AD76 /* Yosemite 2.jpg in Resources */,
 				44A489A01B400C770029AD76 /* Images.xcassets in Resources */,
 			);
@@ -245,7 +252,6 @@
 				44A4899B1B400C770029AD76 /* ViewController.m in Sources */,
 				44A489981B400C770029AD76 /* AppDelegate.m in Sources */,
 				44A489951B400C770029AD76 /* main.m in Sources */,
-				44A489C01B4038FA0029AD76 /* AnnotationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +450,7 @@
 				44A489B41B400C770029AD76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		44A489B51B400C770029AD76 /* Build configuration list for PBXNativeTarget "DrawingAnnotationTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +459,7 @@
 				44A489B71B400C770029AD76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,6 +10,20 @@
 
 @interface ViewController : UIViewController
 
+#pragma mark - Main Menu
+@property (weak, nonatomic) IBOutlet UIView *mainMenuView;
+
+- (IBAction)mainMenuBackAction:(id)sender;
+- (IBAction)mainMenuAddAction:(id)sender;
+- (IBAction)mainMenuRemoveAction:(id)sender;
+
+#pragma mark - Options menu
+
+@property (weak, nonatomic) IBOutlet UIView *optionsMenuBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *optionsMenuView;
+- (IBAction)optionsMenuAddSketchAction:(id)sender;
+- (IBAction)optionsMenuAddAnnotationAction:(id)sender;
+
 #pragma mark - Drawing
 @property (weak, nonatomic) IBOutlet UIImageView *imageForAnnotationImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *baseImageView;

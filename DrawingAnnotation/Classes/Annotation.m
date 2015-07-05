@@ -9,9 +9,7 @@
 #import "Annotation.h"
 #import <UIKit/UIKit.h>
 
-
 @implementation Annotation
-
 
 + (UILabel*)createLabelWithAnnotation:(NSString*)annotation Point:(CGPoint)lastPoint {
  

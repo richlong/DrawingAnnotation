@@ -25,7 +25,6 @@
     BOOL isAnnotationViewActive;
     BOOL isAnnotationPointSet;
     int activeColor;
-
 }
 
 @end
@@ -133,7 +132,7 @@
 }
 
 
-#pragma mark - Button Actions
+#pragma mark - Drawing Button Actions
 
 - (IBAction)brushOpacityAction:(id)sender {
     
@@ -158,7 +157,7 @@
 
     activeColor++;
     
-    if (activeColor > 9) {
+    if (activeColor > 7) {
         activeColor = 0;
     }
     
@@ -167,54 +166,52 @@
 
     switch(activeColor) {
         case 0:
+            //Black
             red = 0.0/255.0;
             green = 0.0/255.0;
             blue = 0.0/255.0;
             break;
         case 1:
-            red = 105.0/255.0;
-            green = 105.0/255.0;
-            blue = 105.0/255.0;
+            //Green
+            red = 139.0/255.0;
+            green = 197.0/255.0;
+            blue = 62.0/255.0;
             break;
         case 2:
-            red = 255.0/255.0;
-            green = 0.0/255.0;
-            blue = 0.0/255.0;
+            //Grey
+            red = 179.0/255.0;
+            green = 179.0/255.0;
+            blue = 179.0/255.0;
             break;
         case 3:
-            red = 0.0/255.0;
-            green = 0.0/255.0;
-            blue = 255.0/255.0;
+            //Yellow
+            red = 251.0/255.0;
+            green = 237.0/255.0;
+            blue = 32.0/255.0;
             break;
         case 4:
-            red = 102.0/255.0;
-            green = 204.0/255.0;
-            blue = 0.0/255.0;
+            //Light blue
+            red = 17.0/255.0;
+            green = 169.0/255.0;
+            blue = 224.0/255.0;
             break;
         case 5:
-            red = 102.0/255.0;
-            green = 255.0/255.0;
-            blue = 0.0/255.0;
+            //Purple
+            red = 126.0/255.0;
+            green = 80.0/255.0;
+            blue = 126.0/255.0;
             break;
         case 6:
-            red = 51.0/255.0;
-            green = 204.0/255.0;
-            blue = 255.0/255.0;
+            //Red
+            red = 180.0/255.0;
+            green = 55.0/255.0;
+            blue = 64.0/255.0;
             break;
         case 7:
-            red = 160.0/255.0;
-            green = 82.0/255.0;
-            blue = 45.0/255.0;
-            break;
-        case 8:
-            red = 255.0/255.0;
-            green = 102.0/255.0;
-            blue = 0.0/255.0;
-            break;
-        case 9:
-            red = 255.0/255.0;
-            green = 255.0/255.0;
-            blue = 0.0/255.0;
+            //Orange
+            red = 250.0/255.0;
+            green = 175.0/255.0;
+            blue = 58.0/255.0;
             break;
     }
 }
@@ -263,7 +260,6 @@
     self.addAnnotationTextField.hidden = YES;
     self.addAnnotationButton.hidden = YES;
     self.addAnnotationLabel.hidden = YES;
-
 }
 
 - (void)hideAddAnnotation {
@@ -281,8 +277,6 @@
         [self.addAnnotationView layoutIfNeeded];
     }];
 }
-
-
 
 #pragma mark - Save image
 
@@ -349,5 +343,39 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIKeyboardDidShowNotification];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIKeyboardWillHideNotification];
+}
+
+#pragma mark - Main menu actions
+
+- (IBAction)mainMenuBackAction:(id)sender {
+}
+
+- (IBAction)mainMenuAddAction:(id)sender {
+    [self optionsMenuToggle];
+}
+
+- (IBAction)mainMenuRemoveAction:(id)sender {
+}
+
+#pragma mark - Options menu
+
+- (void)optionsMenuToggle {
+    
+    if (self.optionsMenuView.hidden) {
+        self.optionsMenuBackgroundView.hidden = NO;
+        self.optionsMenuView.hidden = NO;
+    }
+    else {
+        self.optionsMenuBackgroundView.hidden = YES;
+        self.optionsMenuView.hidden = YES;
+    }
+}
+
+- (IBAction)optionsMenuAddSketchAction:(id)sender {
+}
+
+- (IBAction)optionsMenuAddAnnotationAction:(id)sender {
+    [self showAddAnnotation];
+    [self optionsMenuToggle];
 }
 @end
