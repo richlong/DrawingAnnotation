@@ -16,6 +16,8 @@
 - (IBAction)mainMenuBackAction:(id)sender;
 - (IBAction)mainMenuAddAction:(id)sender;
 - (IBAction)mainMenuRemoveAction:(id)sender;
+- (IBAction)mainMenuToggleAction:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainMenuTopConstraint;
 
 #pragma mark - Options menu
 

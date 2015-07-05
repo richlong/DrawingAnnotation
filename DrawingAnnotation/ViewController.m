@@ -24,6 +24,7 @@
     BOOL isAnnotation;
     BOOL isAnnotationViewActive;
     BOOL isSettingAnnotationPoint;
+    BOOL mainMenuActive;
     int activeColor;
 }
 
@@ -35,6 +36,7 @@
     
     [super viewDidLoad];
     
+    mainMenuActive = YES;
     [self setDefaultBrush];
     [self registerForKeyboardNotifications];
     
@@ -258,7 +260,7 @@
 
 - (void)showAddAnnotation {
     
-    [self animateAnnotationView: 200];
+    [self animateAnnotationView: 0];
     isAnnotationViewActive = YES;
     self.addAnnotationInstructionLabel.hidden = NO;
     self.addAnnotationTextField.hidden = YES;
@@ -268,7 +270,7 @@
 
 - (void)hideAddAnnotation {
     
-    [self animateAnnotationView: -200];
+    [self animateAnnotationView: -113];
     isAnnotationViewActive = NO;
 }
 
@@ -311,18 +313,12 @@
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
-    [self animateAnnotationView: kbSize.height];
 
 }
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-
-    //TODO: need correct position
-    [self animateAnnotationView: 200];
 
 }
 
@@ -356,6 +352,31 @@
 }
 
 - (IBAction)mainMenuRemoveAction:(id)sender {
+}
+
+- (IBAction)mainMenuToggleAction:(id)sender {
+    [self toggleMainMenu];
+}
+
+- (void)toggleMainMenu {
+    
+    float position = 0.0f;
+    
+    if (mainMenuActive) {
+        position = -490;
+        mainMenuActive = NO;
+    }
+    else {
+        mainMenuActive = YES;
+    }
+    
+    [self.mainMenuView layoutIfNeeded];
+
+    [self.mainMenuView setNeedsUpdateConstraints];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.mainMenuTopConstraint.constant = position;
+        [self.mainMenuView layoutIfNeeded];
+    }];
 }
 
 #pragma mark - Options menu
