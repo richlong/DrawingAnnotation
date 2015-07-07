@@ -242,7 +242,7 @@
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.066666666669999999" green="0.66274509800000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="Menu">
+                                        <state key="normal" title="Show/Hide Menu">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -250,7 +250,6 @@
                                             <rect key="frame" x="0.0" y="497" width="202" height="20"/>
                                         </variation>
                                         <connections>
-                                            <action selector="mainMenuRemoveAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2be-Tb-ux7"/>
                                             <action selector="mainMenuToggleAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vli-pr-pYn"/>
                                         </connections>
                                     </button>
@@ -803,7 +802,7 @@
                             <constraint firstItem="Fye-mw-GZd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nxb-sF-8WZ"/>
                             <constraint firstItem="3ZA-hH-Vo2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="O6x-sX-uvG"/>
                             <constraint firstAttribute="trailing" secondItem="3ZA-hH-Vo2" secondAttribute="trailing" constant="558" id="OO1-7W-R7N">
-                                <variation key="widthClass=regular" constant="578"/>
+                                <variation key="widthClass=regular" constant="802"/>
                             </constraint>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VsK-ef-DUI" secondAttribute="bottom" id="U0r-p1-Np8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3ZA-hH-Vo2" secondAttribute="bottom" constant="83" id="U2e-ZM-rJ9"/>
@@ -826,7 +825,7 @@
                             <constraint firstItem="tUg-pT-1D7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-113" id="kBg-5a-vBe"/>
                             <constraint firstItem="tUg-pT-1D7" firstAttribute="top" secondItem="imR-Em-AwJ" secondAttribute="top" id="kCb-yT-HLt"/>
                             <constraint firstItem="tUg-pT-1D7" firstAttribute="leading" secondItem="3ZA-hH-Vo2" secondAttribute="trailing" constant="18" id="lnk-Nh-j3v">
-                                <variation key="widthClass=regular" constant="-199"/>
+                                <variation key="widthClass=regular" constant="25"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="e49-VW-Htq" secondAttribute="centerX" id="m8Q-m5-lxV"/>
                             <constraint firstItem="3ZA-hH-Vo2" firstAttribute="top" secondItem="imR-Em-AwJ" secondAttribute="top" id="pBd-JT-5fZ"/>
