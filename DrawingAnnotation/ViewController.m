@@ -25,6 +25,7 @@
     BOOL isAnnotationViewActive;
     BOOL isSettingAnnotationPoint;
     BOOL mainMenuActive;
+    BOOL drawingMenuActive;
     int activeColor;
 }
 
@@ -48,11 +49,20 @@
 
 - (void)setDefaultBrush {
     
-    red = 0.0/255.0;
-    green = 0.0/255.0;
-    blue = 0.0/255.0;
+    red = 139.0/255.0;
+    green = 197.0/255.0;
+    blue = 62.0/255.0;
     brush = 10.0;
     opacity = 1.0;
+    
+    //Set default active color button background
+    for (UIButton *button in self.drawingMenuView.subviews) {
+        if (button.tag == 1) {
+            [self setActiveColorBackground:button];
+        }
+    }
+
+
 }
 
 #pragma mark Touch Handlers
@@ -137,6 +147,28 @@
     }
 }
 
+#pragma mark - Drawing Menu
+
+- (void)toggleDrawingMenu {
+    
+    float position = 0.0f;
+    if (!drawingMenuActive) {
+        drawingMenuActive = YES;
+    }
+    else {
+        drawingMenuActive = NO;
+        position = -227;
+    }
+    
+    [self.drawingMenuView layoutIfNeeded];
+    
+    [self.drawingMenuView setNeedsUpdateConstraints];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.drawingMenuXPositionConstraint.constant = position;
+        [self.drawingMenuView layoutIfNeeded];
+    }];
+}
+
 
 #pragma mark - Drawing Button Actions
 
@@ -153,7 +185,20 @@
 - (IBAction)brushWidthAction:(id)sender {
     
     //TODO: use set widths?
-    brush++;
+    
+    UIButton *pressedButton = (UIButton*)sender;
+    
+    switch(pressedButton.tag) {
+        case 0:
+            brush = 30;
+            break;
+        case 1:
+            brush = 20;
+            break;
+        case 2:
+            brush = 10;
+            break;
+    }
 }
 
 - (IBAction)selectColourAction:(id)sender {
@@ -167,10 +212,15 @@
         activeColor = 0;
     }
     
-//    UIButton *pressedButton = (UIButton*)sender;
-//    switch(pressedButton.tag) {
+    for (UIButton *inactiveButton in self.drawingMenuView.subviews) {
+        [[inactiveButton layer] setBorderWidth:0.0f];
+    }
+    
+    UIButton *pressedButton = (UIButton*)sender;
+    
+    [self setActiveColorBackground:pressedButton];
 
-    switch(activeColor) {
+    switch(pressedButton.tag) {
         case 0:
             //Black
             red = 0.0/255.0;
@@ -220,6 +270,11 @@
             blue = 58.0/255.0;
             break;
     }
+}
+
+- (void)setActiveColorBackground:(UIButton*)button {
+    [[button layer] setBorderWidth:4.0f];
+    [[button layer] setBorderColor:[UIColor whiteColor].CGColor];
 }
 
 - (IBAction)eraserButtonAction:(id)sender {
@@ -344,11 +399,20 @@
 
 #pragma mark - Main menu actions
 
+- (IBAction)mainMenuKizuAction:(id)sender {
+//    TODO: Save action
+    
+    if (drawingMenuActive) {
+        [self toggleKizuButton];
+        [self toggleDrawingMenu];
+    }
+}
+
 - (IBAction)mainMenuBackAction:(id)sender {
 }
 
 - (IBAction)mainMenuAddAction:(id)sender {
-    [self optionsMenuToggle];
+    [self toggleOptionsMenu];
 }
 
 - (IBAction)mainMenuRemoveAction:(id)sender {
@@ -379,9 +443,21 @@
     }];
 }
 
+- (void)toggleKizuButton {
+    
+    if (!drawingMenuActive) {
+        [self.mainMenuKizuButton setImage:nil forState:UIControlStateNormal];
+        [self.mainMenuKizuButton setTitle:@"Done?" forState:UIControlStateNormal];
+    }
+    else {
+        [self.mainMenuKizuButton setImage:[UIImage imageNamed:@"kizu_logo_270px.png"] forState:UIControlStateNormal];
+        isDrawing = NO;
+    }    
+}
+
 #pragma mark - Options menu
 
-- (void)optionsMenuToggle {
+- (void)toggleOptionsMenu {
     
     if (self.optionsMenuView.hidden) {
         self.optionsMenuBackgroundView.hidden = NO;
@@ -394,11 +470,16 @@
 }
 
 - (IBAction)optionsMenuAddSketchAction:(id)sender {
+    [self toggleKizuButton];
+    [self toggleDrawingMenu];
+    [self toggleOptionsMenu];
+    isErasing = NO;
+    isDrawing = YES;
 }
 
 - (IBAction)optionsMenuAddAnnotationAction:(id)sender {
     [self showAddAnnotation];
-    [self optionsMenuToggle];
+    [self toggleOptionsMenu];
     isSettingAnnotationPoint = YES;
 }
 @end

@@ -12,12 +12,13 @@
 
 #pragma mark - Main Menu
 @property (weak, nonatomic) IBOutlet UIView *mainMenuView;
-
 - (IBAction)mainMenuBackAction:(id)sender;
 - (IBAction)mainMenuAddAction:(id)sender;
 - (IBAction)mainMenuRemoveAction:(id)sender;
 - (IBAction)mainMenuToggleAction:(id)sender;
+- (IBAction)mainMenuKizuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainMenuTopConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *mainMenuKizuButton;
 
 #pragma mark - Options menu
 
@@ -27,6 +28,9 @@
 - (IBAction)optionsMenuAddAnnotationAction:(id)sender;
 
 #pragma mark - Drawing
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *drawingMenuXPositionConstraint;
+@property (weak, nonatomic) IBOutlet UIView *drawingMenuView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageForAnnotationImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *baseImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *drawingImageView;
