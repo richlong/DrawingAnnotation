@@ -95,13 +95,13 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    UITouch *touch = [touches anyObject];
+    CGPoint currentPoint = [touch locationInView:self.view];
+    wasSwiped = YES;
+    UIGraphicsBeginImageContext(self.view.frame.size);
+
     if (isDrawing) {
     
-        wasSwiped = YES;
-        UITouch *touch = [touches anyObject];
-        CGPoint currentPoint = [touch locationInView:self.view];
-        
-        UIGraphicsBeginImageContext(self.view.frame.size);
         [self.drawingImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
         CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
@@ -109,20 +109,33 @@
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
         CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
         CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-        
-        
         CGContextStrokePath(UIGraphicsGetCurrentContext());
         self.drawingImageView.image = UIGraphicsGetImageFromCurrentImageContext();
         [self.drawingImageView setAlpha:opacity];
         UIGraphicsEndImageContext();
         
-        lastPoint = currentPoint;
     }
+    else if (isErasing) {
+        
+        [self.baseImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+        CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeClear);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        self.baseImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        [self.baseImageView setAlpha:opacity];
+        UIGraphicsEndImageContext();
+    }
+    
+    lastPoint = currentPoint;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    if (isDrawing) {
+    if (isDrawing || isErasing) {
 
         if(!wasSwiped) {
             UIGraphicsBeginImageContext(self.view.frame.size);
