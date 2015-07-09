@@ -44,6 +44,8 @@
     self.addAnnotationTextField.hidden = YES;
     self.addAnnotationLabel.hidden = YES;
     self.addAnnotationButton.hidden = YES;
+    
+    self.annotationArray = [[NSMutableArray alloc] init];
 
 }
 
@@ -99,37 +101,32 @@
     CGPoint currentPoint = [touch locationInView:self.view];
     wasSwiped = YES;
     UIGraphicsBeginImageContext(self.view.frame.size);
+    
+    UIImageView *imageForEditing;
+    CGBlendMode editingBlendMode;
 
     if (isDrawing) {
-    
-        [self.drawingImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
-        CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        self.drawingImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-        [self.drawingImageView setAlpha:opacity];
-        UIGraphicsEndImageContext();
         
+        imageForEditing = self.drawingImageView;
+        editingBlendMode = kCGBlendModeNormal;
     }
     else if (isErasing) {
         
-        [self.baseImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
-        CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeClear);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        self.baseImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-        [self.baseImageView setAlpha:opacity];
-        UIGraphicsEndImageContext();
+        imageForEditing = self.baseImageView;
+        editingBlendMode = kCGBlendModeClear;
     }
     
+    [imageForEditing.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(),editingBlendMode);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    imageForEditing.image = UIGraphicsGetImageFromCurrentImageContext();
+    [imageForEditing setAlpha:opacity];
+    UIGraphicsEndImageContext();
     lastPoint = currentPoint;
 }
 
@@ -291,10 +288,7 @@
 }
 
 - (IBAction)eraserButtonAction:(id)sender {
-    
-    //TODO: going to be a pain
-    //http://stackoverflow.com/questions/629409/how-to-draw-a-transparent-stroke-or-anyway-clear-part-of-an-image-on-the-iphon
-    
+
     isErasing = YES;
     isDrawing = NO;
 
@@ -369,7 +363,11 @@
 
 - (IBAction)addAnnotationAction:(id)sender {
     
-    [self.annotationContainerView addSubview:[Annotation createLabelWithAnnotation:self.addAnnotationTextField.text Point:lastPoint]];
+    Annotation *newAnnotation = [[Annotation alloc] initWithAnnotation:self.addAnnotationTextField.text FontSize:16 Date:nil Author:@"Rich Long"];
+    UIView *newAnnotationView = [newAnnotation createAnnotationWithPoint:lastPoint];
+
+    [self.annotationArray addObject:newAnnotation];
+    [self.annotationContainerView addSubview: newAnnotationView];
     
     self.addAnnotationTextField.text = @"";
     [self.addAnnotationTextField endEditing:YES];

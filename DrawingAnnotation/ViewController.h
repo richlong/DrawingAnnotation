@@ -58,6 +58,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *addAnnotationTextField;
 @property (weak, nonatomic) IBOutlet UIButton *addAnnotationButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *addAnnotationViewYPositionConstraint;
+@property (strong, nonatomic) NSMutableArray *annotationArray;
 
 - (IBAction)addTextAnnotationAction:(id)sender;
 - (IBAction)addAnnotationAction:(id)sender;

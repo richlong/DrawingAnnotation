@@ -12,6 +12,13 @@
 
 @interface Annotation : NSObject
 
-+ (UILabel*)createLabelWithAnnotation:(NSString*)annotation Point:(CGPoint)lastPoint;
+@property (strong, nonatomic) NSString *annotationString;
+@property (strong, nonatomic) NSString *annotationAuthorString;
+@property (strong, nonatomic) NSString *annotationDateString;
+@property (nonatomic, assign) float fontSize;
+@property (strong, nonatomic) UIView *annotationBackgroundView;
+
+- (instancetype)initWithAnnotation:(NSString*)annotation FontSize:(float)fontSize Date:(NSString*)date Author:(NSString*)author;
+- (UIView*)createAnnotationWithPoint:(CGPoint)lastPoint;
 
 @end
