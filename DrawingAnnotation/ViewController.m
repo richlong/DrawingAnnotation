@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import "Annotation.h"
 
+#import "drawLargeBrush.h"
+#import "drawMediumBrush.h"
+#import "drawSmallBrush.h"
+
+
 @interface ViewController () {
     
     CGPoint lastPoint;
@@ -27,6 +32,7 @@
     BOOL mainMenuActive;
     BOOL drawingMenuActive;
     int activeColor;
+    float defaultOpacity;
 }
 
 @end
@@ -38,7 +44,6 @@
     [super viewDidLoad];
     
     mainMenuActive = YES;
-    [self setDefaultBrush];
     [self registerForKeyboardNotifications];
     
     self.addAnnotationTextField.hidden = YES;
@@ -46,7 +51,8 @@
     self.addAnnotationButton.hidden = YES;
     
     self.annotationArray = [[NSMutableArray alloc] init];
-
+    defaultOpacity = 0.9;
+    [self setDefaultBrush];
 }
 
 - (void)setDefaultBrush {
@@ -55,7 +61,7 @@
     green = 197.0/255.0;
     blue = 62.0/255.0;
     brush = 10.0;
-    opacity = 1.0;
+    opacity = defaultOpacity;
     
     //Set default active color button background
     for (UIButton *button in self.drawingMenuView.subviews) {
@@ -97,37 +103,40 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.view];
-    wasSwiped = YES;
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    
-    UIImageView *imageForEditing;
-    CGBlendMode editingBlendMode;
+    if (isDrawing || isErasing) {
+        
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self.view];
+        wasSwiped = YES;
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        
+        UIImageView *imageForEditing;
+        CGBlendMode editingBlendMode;
 
-    if (isDrawing) {
+        if (isDrawing) {
+            
+            imageForEditing = self.drawingImageView;
+            editingBlendMode = kCGBlendModeNormal;
+        }
+        else if (isErasing) {
+            
+            imageForEditing = self.baseImageView;
+            editingBlendMode = kCGBlendModeClear;
+        }
         
-        imageForEditing = self.drawingImageView;
-        editingBlendMode = kCGBlendModeNormal;
+        [imageForEditing.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+        CGContextSetBlendMode(UIGraphicsGetCurrentContext(),editingBlendMode);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        imageForEditing.image = UIGraphicsGetImageFromCurrentImageContext();
+        [imageForEditing setAlpha:opacity];
+        UIGraphicsEndImageContext();
+        lastPoint = currentPoint;
     }
-    else if (isErasing) {
-        
-        imageForEditing = self.baseImageView;
-        editingBlendMode = kCGBlendModeClear;
-    }
-    
-    [imageForEditing.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(),editingBlendMode);
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
-    imageForEditing.image = UIGraphicsGetImageFromCurrentImageContext();
-    [imageForEditing setAlpha:opacity];
-    UIGraphicsEndImageContext();
-    lastPoint = currentPoint;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -215,7 +224,7 @@
     
     isErasing = NO;
     isDrawing = YES;
-
+    opacity = defaultOpacity;
     activeColor++;
     
     if (activeColor > 7) {
@@ -254,6 +263,7 @@
             red = 251.0/255.0;
             green = 237.0/255.0;
             blue = 32.0/255.0;
+            opacity = 0.5;
             break;
         case 4:
             //Light blue
@@ -383,6 +393,9 @@
         [self toggleKizuButton];
         [self toggleDrawingMenu];
     }
+    else if (mainMenuActive) {
+        [self toggleMainMenu];
+    }
 }
 
 - (IBAction)mainMenuBackAction:(id)sender {
@@ -406,9 +419,11 @@
     if (mainMenuActive) {
         position = -490;
         mainMenuActive = NO;
+        self.mainMenuToggleButton.hidden = NO;
     }
     else {
         mainMenuActive = YES;
+        self.mainMenuToggleButton.hidden = YES;
     }
     
     [self.mainMenuView layoutIfNeeded];

@@ -18,6 +18,8 @@
         self.fontSize = fontSize;
         self.annotationDateString = date;
         self.annotationAuthorString = author;
+        self.annotationBackgroundView.userInteractionEnabled = YES;
+        
     }
     return self;
 }
@@ -55,6 +57,13 @@
     UIView *backgroundColorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, expectSize.width + padding * 2, expectSize.height + padding * 2)];
     backgroundColorView.backgroundColor = [UIColor colorWithRed:17.0f/255 green:169.0f/255 blue:224.0f/255 alpha:0.8f];
 
+
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    
+    [self.annotationBackgroundView addGestureRecognizer:singleFingerTap];
+
+    
     [self.annotationBackgroundView addSubview:backgroundColorView];
     [self.annotationBackgroundView addSubview:annotationLabel];
     return self.annotationBackgroundView;
@@ -70,5 +79,11 @@
     return [formatter stringFromDate:[NSDate date]];
 
 }
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+
+}
+
+
 
 @end

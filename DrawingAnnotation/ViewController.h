@@ -19,6 +19,7 @@
 - (IBAction)mainMenuKizuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainMenuTopConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *mainMenuKizuButton;
+@property (weak, nonatomic) IBOutlet UIButton *mainMenuToggleButton;
 
 #pragma mark - Options menu
 
@@ -51,7 +52,6 @@
 #pragma mark - Annotating
 
 @property (weak, nonatomic) IBOutlet UIView *annotationContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *addTextAnnotationButton;
 @property (weak, nonatomic) IBOutlet UIView *addAnnotationView;
 @property (weak, nonatomic) IBOutlet UILabel *addAnnotationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addAnnotationInstructionLabel;

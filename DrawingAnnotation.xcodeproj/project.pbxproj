@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		447CED9A1B496CAB00E1A5B0 /* kizu_logo_270px.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */; };
+		447CED9D1B50516700E1A5B0 /* KizuIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CED9C1B50516700E1A5B0 /* KizuIcons.m */; };
+		447CEDA11B50570500E1A5B0 /* drawLargeBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CEDA01B50570500E1A5B0 /* drawLargeBrush.m */; };
+		447CEDA41B5058EC00E1A5B0 /* drawMediumBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CEDA31B5058EC00E1A5B0 /* drawMediumBrush.m */; };
+		447CEDA71B50595900E1A5B0 /* drawSmallBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CEDA61B50595900E1A5B0 /* drawSmallBrush.m */; };
+		447CEDAD1B505DB500E1A5B0 /* largeBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDA91B505DB500E1A5B0 /* largeBrush.png */; };
+		447CEDB21B505E6100E1A5B0 /* mediumBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB01B505E6100E1A5B0 /* mediumBrush.png */; };
+		447CEDB31B505E6100E1A5B0 /* smallBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB11B505E6100E1A5B0 /* smallBrush.png */; };
+		447CEDB51B50600D00E1A5B0 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB41B50600D00E1A5B0 /* eraser.png */; };
+		447CEDB71B5060C300E1A5B0 /* reset.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB61B5060C300E1A5B0 /* reset.png */; };
 		44A489951B400C770029AD76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489941B400C770029AD76 /* main.m */; };
 		44A489981B400C770029AD76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489971B400C770029AD76 /* AppDelegate.m */; };
 		44A4899B1B400C770029AD76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4899A1B400C770029AD76 /* ViewController.m */; };
@@ -31,6 +40,19 @@
 
 /* Begin PBXFileReference section */
 		447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kizu_logo_270px.png; sourceTree = "<group>"; };
+		447CED9B1B50516700E1A5B0 /* KizuIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KizuIcons.h; sourceTree = "<group>"; };
+		447CED9C1B50516700E1A5B0 /* KizuIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KizuIcons.m; sourceTree = "<group>"; };
+		447CED9F1B50570500E1A5B0 /* drawLargeBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drawLargeBrush.h; path = Classes/Buttons/drawLargeBrush.h; sourceTree = "<group>"; };
+		447CEDA01B50570500E1A5B0 /* drawLargeBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = drawLargeBrush.m; path = Classes/Buttons/drawLargeBrush.m; sourceTree = "<group>"; };
+		447CEDA21B5058EC00E1A5B0 /* drawMediumBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drawMediumBrush.h; path = Classes/Buttons/drawMediumBrush.h; sourceTree = "<group>"; };
+		447CEDA31B5058EC00E1A5B0 /* drawMediumBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = drawMediumBrush.m; path = Classes/Buttons/drawMediumBrush.m; sourceTree = "<group>"; };
+		447CEDA51B50595900E1A5B0 /* drawSmallBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drawSmallBrush.h; path = Classes/Buttons/drawSmallBrush.h; sourceTree = "<group>"; };
+		447CEDA61B50595900E1A5B0 /* drawSmallBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = drawSmallBrush.m; path = Classes/Buttons/drawSmallBrush.m; sourceTree = "<group>"; };
+		447CEDA91B505DB500E1A5B0 /* largeBrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeBrush.png; sourceTree = "<group>"; };
+		447CEDB01B505E6100E1A5B0 /* mediumBrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mediumBrush.png; sourceTree = "<group>"; };
+		447CEDB11B505E6100E1A5B0 /* smallBrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallBrush.png; sourceTree = "<group>"; };
+		447CEDB41B50600D00E1A5B0 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
+		447CEDB61B5060C300E1A5B0 /* reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset.png; sourceTree = "<group>"; };
 		44A4898F1B400C770029AD76 /* DrawingAnnotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingAnnotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A489931B400C770029AD76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44A489941B400C770029AD76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,10 +92,28 @@
 		447CED981B496C9700E1A5B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				447CEDB41B50600D00E1A5B0 /* eraser.png */,
+				447CEDA91B505DB500E1A5B0 /* largeBrush.png */,
+				447CEDB01B505E6100E1A5B0 /* mediumBrush.png */,
+				447CEDB11B505E6100E1A5B0 /* smallBrush.png */,
 				447CED991B496CAB00E1A5B0 /* kizu_logo_270px.png */,
 				44A489B81B4029720029AD76 /* Yosemite 2.jpg */,
+				447CEDB61B5060C300E1A5B0 /* reset.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		447CED9E1B50569700E1A5B0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				447CED9F1B50570500E1A5B0 /* drawLargeBrush.h */,
+				447CEDA01B50570500E1A5B0 /* drawLargeBrush.m */,
+				447CEDA21B5058EC00E1A5B0 /* drawMediumBrush.h */,
+				447CEDA31B5058EC00E1A5B0 /* drawMediumBrush.m */,
+				447CEDA51B50595900E1A5B0 /* drawSmallBrush.h */,
+				447CEDA61B50595900E1A5B0 /* drawSmallBrush.m */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		44A489861B400C770029AD76 = {
@@ -140,6 +180,9 @@
 		44A489BA1B402B0C0029AD76 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				447CED9E1B50569700E1A5B0 /* Buttons */,
+				447CED9B1B50516700E1A5B0 /* KizuIcons.h */,
+				447CED9C1B50516700E1A5B0 /* KizuIcons.m */,
 				44A489C11B406DDE0029AD76 /* Annotation.h */,
 				44A489C21B406DDE0029AD76 /* Annotation.m */,
 			);
@@ -227,10 +270,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A4899E1B400C770029AD76 /* Main.storyboard in Resources */,
+				447CEDB71B5060C300E1A5B0 /* reset.png in Resources */,
+				447CEDB31B505E6100E1A5B0 /* smallBrush.png in Resources */,
 				44A489A31B400C770029AD76 /* LaunchScreen.xib in Resources */,
+				447CEDAD1B505DB500E1A5B0 /* largeBrush.png in Resources */,
+				447CEDB51B50600D00E1A5B0 /* eraser.png in Resources */,
 				447CED9A1B496CAB00E1A5B0 /* kizu_logo_270px.png in Resources */,
 				44A489B91B4029720029AD76 /* Yosemite 2.jpg in Resources */,
 				44A489A01B400C770029AD76 /* Images.xcassets in Resources */,
+				447CEDB21B505E6100E1A5B0 /* mediumBrush.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,9 +296,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447CEDA41B5058EC00E1A5B0 /* drawMediumBrush.m in Sources */,
+				447CEDA11B50570500E1A5B0 /* drawLargeBrush.m in Sources */,
 				44A489C31B406DDE0029AD76 /* Annotation.m in Sources */,
 				44A4899B1B400C770029AD76 /* ViewController.m in Sources */,
+				447CED9D1B50516700E1A5B0 /* KizuIcons.m in Sources */,
 				44A489981B400C770029AD76 /* AppDelegate.m in Sources */,
+				447CEDA71B50595900E1A5B0 /* drawSmallBrush.m in Sources */,
 				44A489951B400C770029AD76 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
