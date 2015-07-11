@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Annotation.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <AnnotationDelegate, UIAlertViewDelegate>
 
 #pragma mark - Main Menu
 @property (weak, nonatomic) IBOutlet UIView *mainMenuView;
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *drawingMenuXPositionConstraint;
 @property (weak, nonatomic) IBOutlet UIView *drawingMenuView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageForAnnotationImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *loadedImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *baseImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *drawingImageView;
 @property (weak, nonatomic) IBOutlet UIButton *brushWitdhButton;
@@ -40,9 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *eraserButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
-@property (weak, nonatomic) IBOutlet UIButton *brushOpacityButton;
 
-- (IBAction)brushOpacityAction:(id)sender;
 - (IBAction)brushWidthAction:(id)sender;
 - (IBAction)selectColourAction:(id)sender;
 - (IBAction)eraserButtonAction:(id)sender;
@@ -59,6 +59,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addAnnotationButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *addAnnotationViewYPositionConstraint;
 @property (strong, nonatomic) NSMutableArray *annotationArray;
+@property (strong, nonatomic) Annotation *selectedAnnotation;
 
 - (IBAction)addTextAnnotationAction:(id)sender;
 - (IBAction)addAnnotationAction:(id)sender;

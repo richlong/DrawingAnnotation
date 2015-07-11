@@ -9,9 +9,10 @@
 #import "Annotation.h"
 #import <UIKit/UIKit.h>
 
+
 @implementation Annotation
 
-- (instancetype)initWithAnnotation:(NSString*)annotation FontSize:(float)fontSize Date:(NSString*)date Author:(NSString*)author {
+- (instancetype)initWithAnnotation:(NSString*)annotation FontSize:(float)fontSize Date:(NSString*)date Author:(NSString*)author Delegate:(id<AnnotationDelegate>)delegate {
     self = [super init];
     if (self) {
         self.annotationString = annotation;
@@ -19,7 +20,7 @@
         self.annotationDateString = date;
         self.annotationAuthorString = author;
         self.annotationBackgroundView.userInteractionEnabled = YES;
-        
+        self.delegate = delegate;
     }
     return self;
 }
@@ -81,7 +82,7 @@
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-
+    [self.delegate detectAnnotationTouch:self];
 }
 
 

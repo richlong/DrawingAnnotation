@@ -31,8 +31,8 @@
     BOOL isSettingAnnotationPoint;
     BOOL mainMenuActive;
     BOOL drawingMenuActive;
-    int activeColor;
     float defaultOpacity;
+    BOOL isRemovingAnnotation;
 }
 
 @end
@@ -69,8 +69,6 @@
             [self setActiveColorBackground:button];
         }
     }
-
-
 }
 
 #pragma mark Touch Handlers
@@ -90,15 +88,11 @@
         if (isSettingAnnotationPoint) {
             annotationPoint = lastPoint;
             isSettingAnnotationPoint = NO;
-            NSLog(@"annotationPoint: (%f,%f)", annotationPoint.x, annotationPoint.y);
         }
 
     }
     
     [self.addAnnotationTextField endEditing:YES];
-    
-    NSLog(@"Point in myView: (%f,%f)", lastPoint.x, lastPoint.y);
-
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -117,11 +111,13 @@
             
             imageForEditing = self.drawingImageView;
             editingBlendMode = kCGBlendModeNormal;
+//            opacity = defaultOpacity;
         }
         else if (isErasing) {
             
             imageForEditing = self.baseImageView;
             editingBlendMode = kCGBlendModeClear;
+            opacity = 1.0;
         }
         
         [imageForEditing.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -143,7 +139,7 @@
     
     if (isDrawing || isErasing) {
 
-        if(!wasSwiped) {
+        if(!wasSwiped && isDrawing) {
             UIGraphicsBeginImageContext(self.view.frame.size);
             [self.drawingImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
@@ -166,6 +162,33 @@
     }
 }
 
+#pragma mark - Annotation Actions
+
+- (void)detectAnnotationTouch:(Annotation *)annotation {
+    if (isRemovingAnnotation) {
+        self.selectedAnnotation = annotation;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Annotation?"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:@"Cancel",nil];
+        [alert show];
+    }
+}
+
+- (void)removeAnnotation:(Annotation *)annotation {
+    
+    [self.annotationArray removeObject:annotation];
+    annotation.annotationBackgroundView.hidden = YES;
+    isRemovingAnnotation = NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    // the user clicked OK
+    if (buttonIndex == 0) {
+        [self removeAnnotation:self.selectedAnnotation];
+    }
+}
 #pragma mark - Drawing Menu
 
 - (void)toggleDrawingMenu {
@@ -173,6 +196,9 @@
     float position = 0.0f;
     if (!drawingMenuActive) {
         drawingMenuActive = YES;
+        if (!mainMenuActive) {
+            [self toggleMainMenu];
+        }
     }
     else {
         drawingMenuActive = NO;
@@ -191,20 +217,8 @@
 
 #pragma mark - Drawing Button Actions
 
-- (IBAction)brushOpacityAction:(id)sender {
-    
-    opacity = opacity - 0.1;
-    
-    if (opacity < 0.1) {
-        opacity = 1.0 ;
-    }
-    
-}
-
 - (IBAction)brushWidthAction:(id)sender {
-    
-    //TODO: use set widths?
-    
+
     UIButton *pressedButton = (UIButton*)sender;
     
     switch(pressedButton.tag) {
@@ -225,11 +239,6 @@
     isErasing = NO;
     isDrawing = YES;
     opacity = defaultOpacity;
-    activeColor++;
-    
-    if (activeColor > 7) {
-        activeColor = 0;
-    }
     
     for (UIButton *inactiveButton in self.drawingMenuView.subviews) {
         [[inactiveButton layer] setBorderWidth:0.0f];
@@ -356,6 +365,21 @@
     }];
 }
 
+- (IBAction)addAnnotationAction:(id)sender {
+    
+    Annotation *newAnnotation = [[Annotation alloc] initWithAnnotation:self.addAnnotationTextField.text FontSize:16 Date:nil Author:@"Rich Long" Delegate:self];
+
+    UIView *newAnnotationView = [newAnnotation createAnnotationWithPoint:annotationPoint];
+    
+    [self.annotationArray addObject:newAnnotation];
+    [self.annotationContainerView addSubview: newAnnotationView];
+    
+    self.addAnnotationTextField.text = @"";
+    [self.addAnnotationTextField endEditing:YES];
+    [self hideAddAnnotation];
+}
+
+
 #pragma mark - Save image
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -369,19 +393,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Image was successfully saved in photoalbum"  delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Close", nil];
         [alert show];
     }
-}
-
-- (IBAction)addAnnotationAction:(id)sender {
-    
-    Annotation *newAnnotation = [[Annotation alloc] initWithAnnotation:self.addAnnotationTextField.text FontSize:16 Date:nil Author:@"Rich Long"];
-    UIView *newAnnotationView = [newAnnotation createAnnotationWithPoint:lastPoint];
-
-    [self.annotationArray addObject:newAnnotation];
-    [self.annotationContainerView addSubview: newAnnotationView];
-    
-    self.addAnnotationTextField.text = @"";
-    [self.addAnnotationTextField endEditing:YES];
-    [self hideAddAnnotation];
 }
 
 #pragma mark - Main menu actions
@@ -406,6 +417,7 @@
 }
 
 - (IBAction)mainMenuRemoveAction:(id)sender {
+    isRemovingAnnotation = YES;
 }
 
 - (IBAction)mainMenuToggleAction:(id)sender {

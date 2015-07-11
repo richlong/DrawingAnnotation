@@ -10,15 +10,24 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
 
+@class Annotation;
+
+@protocol AnnotationDelegate
+
+- (void)detectAnnotationTouch:(Annotation *)annotation;
+
+@end
+
 @interface Annotation : NSObject
 
+@property (nonatomic, assign) id<AnnotationDelegate> delegate;
 @property (strong, nonatomic) NSString *annotationString;
 @property (strong, nonatomic) NSString *annotationAuthorString;
 @property (strong, nonatomic) NSString *annotationDateString;
 @property (nonatomic, assign) float fontSize;
 @property (strong, nonatomic) UIView *annotationBackgroundView;
 
-- (instancetype)initWithAnnotation:(NSString*)annotation FontSize:(float)fontSize Date:(NSString*)date Author:(NSString*)author;
+- (instancetype)initWithAnnotation:(NSString*)annotation FontSize:(float)fontSize Date:(NSString*)date Author:(NSString*)author Delegate:(id<AnnotationDelegate>)delegate;
 - (UIView*)createAnnotationWithPoint:(CGPoint)lastPoint;
 
 @end
