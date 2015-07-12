@@ -17,13 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yosemite 2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VsK-ef-DUI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VsK-ef-DUI">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-nw-Uvu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRd-Sq-g1s" userLabel="Loaded Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-nw-Uvu" userLabel="Base Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-CY-fOD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-CY-fOD" userLabel="Drawing Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-nG-CD3" userLabel="Annotation view">
@@ -901,6 +907,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="VsK-ef-DUI"/>
+                                <exclude reference="TRd-Sq-g1s"/>
                                 <exclude reference="9V6-nw-Uvu"/>
                                 <exclude reference="0hh-CY-fOD"/>
                                 <exclude reference="aVg-nG-CD3"/>
@@ -955,6 +962,7 @@
                         <variation key="widthClass=regular">
                             <mask key="subviews">
                                 <include reference="VsK-ef-DUI"/>
+                                <include reference="TRd-Sq-g1s"/>
                                 <include reference="9V6-nw-Uvu"/>
                                 <include reference="0hh-CY-fOD"/>
                                 <include reference="aVg-nG-CD3"/>
@@ -1024,6 +1032,7 @@
                         <outlet property="drawingMenuXPositionConstraint" destination="xPR-GQ-CYM" id="fKb-k6-A2U"/>
                         <outlet property="eraserButton" destination="jrs-mD-Oap" id="8ee-AD-GM2"/>
                         <outlet property="imageForAnnotationImageView" destination="VsK-ef-DUI" id="cff-nC-7Z5"/>
+                        <outlet property="loadedImageView" destination="TRd-Sq-g1s" id="NOn-NA-i0e"/>
                         <outlet property="mainMenuKizuButton" destination="mAN-dZ-UFD" id="Jqm-PA-qU3"/>
                         <outlet property="mainMenuToggleButton" destination="Rdm-yx-YdT" id="SZC-yb-Z4E"/>
                         <outlet property="mainMenuTopConstraint" destination="O6x-sX-uvG" id="EYw-DY-2zw"/>
@@ -1053,7 +1062,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Yosemite 2.jpg" width="5013" height="2820"/>
         <image name="eraser.png" width="70" height="70"/>
         <image name="kizu_logo_270px.png" width="270" height="177"/>
         <image name="largeBrush.png" width="70" height="70"/>

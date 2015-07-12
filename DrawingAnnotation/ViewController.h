@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Annotation.h"
+#import "DrawingAnnotationDataSource.h"
 
-@interface ViewController : UIViewController <AnnotationDelegate, UIAlertViewDelegate>
+@interface ViewController : UIViewController <AnnotationDelegate, UIAlertViewDelegate, DrawingAnnotationDataSourceDelegate>
+
+@property (strong, nonatomic) DrawingAnnotationDataSource *dataSource;
 
 #pragma mark - Main Menu
 @property (weak, nonatomic) IBOutlet UIView *mainMenuView;
@@ -46,7 +49,6 @@
 - (IBAction)brushWidthAction:(id)sender;
 - (IBAction)selectColourAction:(id)sender;
 - (IBAction)eraserButtonAction:(id)sender;
-- (IBAction)saveButtonAction:(id)sender;
 - (IBAction)resetButtonAction:(id)sender;
 
 #pragma mark - Annotating

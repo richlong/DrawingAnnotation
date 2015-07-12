@@ -53,6 +53,31 @@
     self.annotationArray = [[NSMutableArray alloc] init];
     defaultOpacity = 0.9;
     [self setDefaultBrush];
+    
+    self.dataSource = [[DrawingAnnotationDataSource alloc] initWithDelegate:self];
+    
+    //Load existing
+    
+    self.imageForAnnotationImageView.image = self.dataSource.getBackgroundImage;
+    
+    if (self.dataSource.getDrawingLayer) {
+        self.baseImageView.image = self.dataSource.getDrawingLayer;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            if ([self.dataSource.getSavedAnnotations count] > 0) {
+                
+                //Collecting from delegate to prevent was mutated while being enumerated errors
+                for (Annotation *savedAnnotation in self.dataSource.getSavedAnnotations) {
+                    [self addAnnotationToView:savedAnnotation withPoint:savedAnnotation.point];
+                }
+            }
+        
+        });
+    });
 }
 
 - (void)setDefaultBrush {
@@ -69,6 +94,12 @@
             [self setActiveColorBackground:button];
         }
     }
+}
+
+#pragma mark Data Source
+
+- (void)saveAnnotationsToWebservice {
+    [self.dataSource saveAnnotationsToWebservice:self.annotationArray];
 }
 
 #pragma mark Touch Handlers
@@ -111,7 +142,6 @@
             
             imageForEditing = self.drawingImageView;
             editingBlendMode = kCGBlendModeNormal;
-//            opacity = defaultOpacity;
         }
         else if (isErasing) {
             
@@ -313,15 +343,6 @@
 
 }
 
-- (IBAction)saveButtonAction:(id)sender {
-    
-    UIGraphicsBeginImageContextWithOptions(self.baseImageView.bounds.size, NO,0.0);
-    [self.baseImageView.image drawInRect:CGRectMake(0, 0, self.baseImageView.frame.size.width, self.baseImageView.frame.size.height)];
-    UIImage *SaveImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    UIImageWriteToSavedPhotosAlbum(SaveImage, self,@selector(image:didFinishSavingWithError:contextInfo:), nil);
-}
-
 - (IBAction)resetButtonAction:(id)sender {
     self.baseImageView.image = nil;
 }
@@ -351,6 +372,8 @@
 
 - (void)hideAddAnnotation {
     
+    self.addAnnotationTextField.text = @"";
+    [self.addAnnotationTextField endEditing:YES];
     [self animateAnnotationView: -113];
     isAnnotationViewActive = NO;
 }
@@ -367,20 +390,30 @@
 
 - (IBAction)addAnnotationAction:(id)sender {
     
-    Annotation *newAnnotation = [[Annotation alloc] initWithAnnotation:self.addAnnotationTextField.text FontSize:16 Date:nil Author:@"Rich Long" Delegate:self];
-
-    UIView *newAnnotationView = [newAnnotation createAnnotationWithPoint:annotationPoint];
+    Annotation *newAnnotation = [[Annotation alloc] initWithAnnotation:self.addAnnotationTextField.text FontSize:16 Date:nil Author:self.dataSource.getAuthor Delegate:self];
     
-    [self.annotationArray addObject:newAnnotation];
-    [self.annotationContainerView addSubview: newAnnotationView];
-    
-    self.addAnnotationTextField.text = @"";
-    [self.addAnnotationTextField endEditing:YES];
+    [self addAnnotationToView:newAnnotation withPoint:annotationPoint];
     [self hideAddAnnotation];
+}
+
+- (void)addAnnotationToView:(Annotation*)annotation withPoint:(CGPoint)point {
+    
+    UIView *newAnnotationView = [annotation createAnnotationWithPoint:point];
+    [self.annotationArray addObject:annotation];
+    [self.annotationContainerView addSubview: newAnnotationView];
 }
 
 
 #pragma mark - Save image
+
+
+- (void)saveDrawingImageToDevice {
+    UIGraphicsBeginImageContextWithOptions(self.baseImageView.bounds.size, NO,0.0);
+    [self.baseImageView.image drawInRect:CGRectMake(0, 0, self.baseImageView.frame.size.width, self.baseImageView.frame.size.height)];
+    [self.dataSource saveImageToDevice:UIGraphicsGetImageFromCurrentImageContext()];
+    UIGraphicsEndImageContext();
+    
+}
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
@@ -398,8 +431,7 @@
 #pragma mark - Main menu actions
 
 - (IBAction)mainMenuKizuAction:(id)sender {
-//    TODO: Save action
-    
+
     if (drawingMenuActive) {
         [self toggleKizuButton];
         [self toggleDrawingMenu];
@@ -407,6 +439,9 @@
     else if (mainMenuActive) {
         [self toggleMainMenu];
     }
+    
+    [self saveAnnotationsToWebservice];
+    [self saveDrawingImageToDevice];
 }
 
 - (IBAction)mainMenuBackAction:(id)sender {

@@ -17,6 +17,7 @@
 		447CEDB51B50600D00E1A5B0 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB41B50600D00E1A5B0 /* eraser.png */; };
 		447CEDB71B5060C300E1A5B0 /* reset.png in Resources */ = {isa = PBXBuildFile; fileRef = 447CEDB61B5060C300E1A5B0 /* reset.png */; };
 		447CEDBA1B5165B300E1A5B0 /* KizuIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CEDB91B5165B300E1A5B0 /* KizuIcons.m */; };
+		447CEDBD1B5186A800E1A5B0 /* DrawingAnnotationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CEDBC1B5186A800E1A5B0 /* DrawingAnnotationDataSource.m */; };
 		44A489951B400C770029AD76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489941B400C770029AD76 /* main.m */; };
 		44A489981B400C770029AD76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A489971B400C770029AD76 /* AppDelegate.m */; };
 		44A4899B1B400C770029AD76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4899A1B400C770029AD76 /* ViewController.m */; };
@@ -53,6 +54,8 @@
 		447CEDB61B5060C300E1A5B0 /* reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset.png; sourceTree = "<group>"; };
 		447CEDB81B5165B300E1A5B0 /* KizuIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KizuIcons.h; sourceTree = "<group>"; };
 		447CEDB91B5165B300E1A5B0 /* KizuIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KizuIcons.m; sourceTree = "<group>"; };
+		447CEDBB1B5186A800E1A5B0 /* DrawingAnnotationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawingAnnotationDataSource.h; path = Classes/DrawingAnnotationDataSource.h; sourceTree = "<group>"; };
+		447CEDBC1B5186A800E1A5B0 /* DrawingAnnotationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawingAnnotationDataSource.m; path = Classes/DrawingAnnotationDataSource.m; sourceTree = "<group>"; };
 		44A4898F1B400C770029AD76 /* DrawingAnnotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingAnnotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A489931B400C770029AD76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44A489941B400C770029AD76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 			children = (
 				447CEDB81B5165B300E1A5B0 /* KizuIcons.h */,
 				447CEDB91B5165B300E1A5B0 /* KizuIcons.m */,
+				447CEDBB1B5186A800E1A5B0 /* DrawingAnnotationDataSource.h */,
+				447CEDBC1B5186A800E1A5B0 /* DrawingAnnotationDataSource.m */,
 				447CED9E1B50569700E1A5B0 /* Buttons */,
 				44A489C11B406DDE0029AD76 /* Annotation.h */,
 				44A489C21B406DDE0029AD76 /* Annotation.m */,
@@ -296,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447CEDBD1B5186A800E1A5B0 /* DrawingAnnotationDataSource.m in Sources */,
 				447CEDA41B5058EC00E1A5B0 /* drawMediumBrush.m in Sources */,
 				447CEDA11B50570500E1A5B0 /* drawLargeBrush.m in Sources */,
 				44A489C31B406DDE0029AD76 /* Annotation.m in Sources */,
